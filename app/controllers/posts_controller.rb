@@ -8,10 +8,13 @@ class PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-
+      if post.is_valid?
     post.update(post_params)
 
     render json: post
+      else
+        render json: {error "crap"}
+      end
   end
 
   private
